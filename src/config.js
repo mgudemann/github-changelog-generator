@@ -11,7 +11,7 @@ var config = {};
  * GitHub Repository to fetch issues from. Multiple repositories can be specified comma separated.
  * @type {string}
  */
-config.repository = 'matomo-org/matomo';
+config.repository = 'input-output-hk/fm-ledger-rules';
 
 /**
  * See https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization
@@ -33,7 +33,7 @@ config.milestonesToIgnore = ['3.0.0(.*)'];
 
 /**
  * Issues will be sorted by those labels. An issue having the label 'Major' will be listed first while an issue having
- * the label 'Bug' will be listed last. An issue that has the label 'Major' and 'Bug' will be listed before a label having 
+ * the label 'Bug' will be listed last. An issue that has the label 'Major' and 'Bug' will be listed before a label having
  * only 'Major'. The higher the index of the array item, the more important is the label.
  *
  * @type {Array}

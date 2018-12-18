@@ -86,6 +86,9 @@ function renderIssues(repository, issues)
 
     $issues.append("\n\n<br/><div class='notAnIssue'>" + repository + "</div>\n\n");
 
+    $issues.append('| Issue/PR | Summary | Epic | Contributors | Created | Finished | Comments| <br/>');
+    $issues.append('|----------|---------|------|--------------|---------|----------|---------|');
+
     if (issues && issues.length === 0) {
         $issues.append('<li class="notAnIssue">No issues found</li>' + "\n");
     } else {
@@ -145,7 +148,7 @@ function onLimitExceeded()
 
 function formatAuthor(user)
 {
-    return '<a href="' + user.html_url + '">@' + user.login + '</a>';
+    return '[' + user.login + '](' + user.html_url + ')';
 }
 
 function encodedStr(rawStr)
@@ -160,11 +163,14 @@ function formatChangelogEntry(issue, authors)
     authors = authors.filter(function (item, pos, self) {
         return self.indexOf(item) === pos;
     });
-    var description = '<a href="' + issue.html_url + '">#' + issue.number + '</a> ' + encodedStr(issue.title);
+    var description = '| [' + issue.number + '](' + issue.html_url + ')' + ' | ' + encodedStr(issue.title) + ' |  | ';
 
     if (authors.length) {
-        description += ' [by ' + authors.join(', ') + ']';
+        description +=  authors.join(', ') + ' | ';
+    } else {
+        description += '   |'
     }
+    description += issue.created_at.substr(0, 10) + ' | ' + issue.closed_at.substr(0, 10) + ' |   |';
 
     return description;
 }
